@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+
+{% block content%}
+
+<h2 class='text-center'>Add New Students</h2>
+
+<form class='container w-50 p-3' action="" method="POST" style="background-color: rgb(79, 146, 191);">
+  {% csrf_token %}
+  <div class="mb-3">
+      <label for="name" class="form-label">Name : </label>
+      <input type="text" name='name' class="form-control" id="name" placeholder="Name : ">
+      {% if errormagg %}
+  <div class="p-1">
+      <p class="text-danger">{{ errormagg }}</p>
+  </div>
+  {% endif %}
+  </div>
+  <div class="mb-3">
+      <label for="email" class="form-label">Email </label>
+      <input type="email" name='email' class="form-control" id="email" placeholder="Email :">
+  </div>
+  <div class="mb-3">
+      <label for="password" class="form-label">Password </label>
+      <input type="password" name='password' class="form-control" id="password" placeholder="Password :">
+  </div>
+  <div class="mb-3 d-flex justify-content-center align-items-center">
+     <button class="btn bg-primary w-100">Add</button>
+  </div>
+</form>
+
+
+
+<h2 class="text-center mt-5 ">Students Records</h2>
+<table class="table container ">
+    <thead>
+      <tr>
+        <th scope="col">Sq</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Password</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {% for i in studentdata %}
+        <th scope="row"></th>
+        <td>{{i.name}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.password}}</td>
+        <td>
+          <a class="btn btn-success " href="{% url 'update_data' i.id %}">Edit</a>
+         <a class="btn btn-danger" href="{% url 'delete_data' i.id %}">Delete</a>
+        </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+{% endblock %}

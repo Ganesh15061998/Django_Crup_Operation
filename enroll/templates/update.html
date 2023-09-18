@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% block content%}
+
+<h2 class='text-center'>Edit Students Info</h2>
+<form class='container w-50 p-3 mt-4' method="POST" style="background-color: rgb(79, 146, 191);">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{ student.id }}">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name : </label>
+        <input type="text" name='name' class="form-control" id="name" placeholder="Name : " value="{{ student.name }}">
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email </label>
+        <input type="email" name='email' class="form-control" id="email" placeholder="Email :" value="{{ student.email }}">
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password </label>
+        <input type="password" name='password' class="form-control" id="mobile" placeholder="Password :" value="{{ student.password }}">
+    </div>
+    <div class="mb-3 d-flex justify-content-center align-items-center">
+       <button class="btn bg-primary w-100">Update</button>
+    </div>
+</form>
+
+{% endblock %}
